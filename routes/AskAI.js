@@ -1,27 +1,36 @@
-require("dotenv").config()
-const express = require('express');
+import dotenv from 'dotenv';
+dotenv.config();
+import express, { response } from 'express';
 const router = express.Router();
-import OpenAI from "openai";
-//const OpenAI = require("openai")
+import axios from 'axios';
+import cors from 'cors';
 
-const openai= new OpenAI(process.env.OPENAI_API_KEY)
+router.use(cors()); // Add this line to use the cors middleware
 
-router.get('/Question', async (req, res) => {
-    const response = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            "role": "user",
-            "content": [
-              {
-                "type": "text",
-                "text": "Write a haiku about programming."
-              }
-            ]
-          }
-        ]
-      });
-    res.send(response);
+router.post('/Question', async (req, res) => {
+  let body = req.body
+  console.log(body)
+  AskAI({
+    messages: body.messages,
+    model: body.model
+  }).then((response) => {
+    res.send(response)
+  })
 });
 
-exports.AskAIrouter = router;
+async function AskAI({ messages , model}) {
+  // Add user's message to state immediately
+  try {
+      const response = await axios.post('http://localhost:11434/api/chat', {
+          model: model,
+          messages: messages,
+          stream: false,
+      });
+      return response.data; // Return the response data
+  } catch (error) {
+      console.error(error);
+      throw error; // Throw the error to be caught in the calling function
+  }
+}
+
+export default router;
