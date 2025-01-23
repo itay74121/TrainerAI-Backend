@@ -5,11 +5,12 @@ const router = express.Router();
 import axios from 'axios';
 import cors from 'cors';
 
+
+
 router.use(cors()); // Add this line to use the cors middleware
 
 router.post('/Question', async (req, res) => {
   let body = req.body
-  console.log(body)
   AskAI({
     messages: body.messages,
     model: body.model
@@ -21,7 +22,7 @@ router.post('/Question', async (req, res) => {
 async function AskAI({ messages , model}) {
   // Add user's message to state immediately
   try {
-      const response = await axios.post('http://localhost:11434/api/chat', {
+      const response = await axios.post(`http://${process.env.OLLAMA_IP}:11434/api/chat`, {
           model: model,
           messages: messages,
           stream: false,
