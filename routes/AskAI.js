@@ -11,6 +11,7 @@ router.use(cors()); // Add this line to use the cors middleware
 
 router.post('/Question', async (req, res) => {
   let body = req.body
+  console.log(body)
   AskAI({
     messages: body.messages,
     model: body.model
