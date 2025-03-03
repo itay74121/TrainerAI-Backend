@@ -2,12 +2,13 @@ import {config} from 'dotenv';
 config();
 import express from 'express';
 import AskAIrouter from './routes/AskAI.js';
+import OldConvoRouter from './routes/OldConvo.js';
 const app = express();
 import cors from 'cors';
 import https from 'https';
 import fs from 'fs';
 import { Authorization } from './util/Authentication.js';
-import { CheckConnection, LogRequest } from './mongo/mongoutil.js';
+import { CheckConnection, LogMessages, LogRequest } from './mongo/mongoutil.js';
 
 
 app.use(cors());
@@ -15,7 +16,9 @@ app.use(express.json());
 app.use(CheckConnection)
 app.use(LogRequest)
 app.use(Authorization)
+app.use(LogMessages)
 app.use('/AskAI', AskAIrouter);
+app.use("/OldConvo",OldConvoRouter);
 
 
 app.listen(5001, () => {

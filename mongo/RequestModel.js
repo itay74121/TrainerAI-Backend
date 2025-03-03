@@ -12,7 +12,9 @@ const RequestScheme = new Schema({
     model:String,
     Stream:Boolean,
     Token:String,
-})
+    Tokenlength:Number,
+    userid:String
+},{collection:"Request"})
 
 
 export const RequestModel = mongoose.model("Request",RequestScheme)
