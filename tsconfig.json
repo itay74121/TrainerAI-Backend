@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "ES2020",
-        "module": "CommonJS", // if package.json lacks "type":"module"
+        "module": "esnext", 
         "moduleResolution": "Node",
         "outDir": "dist",
         "rootDir": "./",
@@ -10,5 +10,5 @@
         "skipLibCheck": true,
         "resolveJsonModule": true
     },
-    "include": ["scr", "types", "mongo", "index.ts", "routes"], ", "util", "routes", "controller"agents"
+    "include": ["scr", "types", "mongo", "index.ts", "routes" , "util", "routes", "controller", "agents"]
 }

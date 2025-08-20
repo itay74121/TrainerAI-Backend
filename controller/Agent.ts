@@ -10,12 +10,12 @@ import {
 } from "@openai/agents";
 import type { ParamsDictionary } from "express-serve-static-core";
 
-interface AgentParam extends ParamsDictionary {
+export interface AgentParam extends ParamsDictionary {
     agent: string;
 }
 
-interface AgentRequest {
-    messages: [UserMessageItem | SystemMessageItem | AssistantMessageItem];
+export interface AgentRequest {
+    messages: UserMessageItem[] | SystemMessageItem[] | AssistantMessageItem[];
     newMessage: UserMessageItem;
     time: Date;
     uid: User;
@@ -28,9 +28,13 @@ export const Answer = async (
     try {
         const agent: Agent | null = findAgent(req.params.agent);
         if (agent) {
-            if (typeof req.body.newMessage.content === "string") {
-                const response = await run(agent, req.body.newMessage.content);
-                res.json({
+            if (typeof req.body["newMessage"]["content"] === "string") {
+                const response = await run(
+                    agent,
+                    req.body["newMessage"]["content"]
+                );
+
+                res.status(201).json({
                     role: "assistant",
                     status: "completed",
                     content: [
@@ -47,12 +51,13 @@ export const Answer = async (
             }
         }
     } catch (message) {
-        res.json({
+        console.log(message);
+        res.status(500).json({
             status: "incomplete",
             content: [
                 {
                     type: "refusal",
-                    refusal: message,
+                    refusal: JSON.stringify(message),
                 },
             ],
             role: "assistant",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cls && node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
     "start": "npm install && nodemon ./index.js",
     "typecheck": "tsc --noEmit",
     "build": "tsc",
@@ -36,13 +36,19 @@
     "@esbuild-kit/esm-loader": "^2.6.5",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.17.2",
     "@types/qs": "^6.14.0",
+    "@types/supertest": "^6.0.3",
+    "jest": "^30.0.5",
     "nodemon": "^3.1.9",
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.1",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.4",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "zod": "^3.25.76"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
