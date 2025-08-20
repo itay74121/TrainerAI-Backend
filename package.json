@@ -4,7 +4,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./index.js"
+    "start": "npm install && nodemon ./index.js",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "dev": "tsx watch index.ts"
   },
   "presets": [
     "@babel/preset-env",
@@ -17,6 +20,7 @@
   "type": "module",
   "description": "",
   "dependencies": {
+    "@openai/agents": "^0.0.17",
     "@types/react": "^19.0.7",
     "axios": "^1.7.9",
     "cors": "^2.8.5",
@@ -30,10 +34,15 @@
   },
   "devDependencies": {
     "@esbuild-kit/esm-loader": "^2.6.5",
-    "@types/node": "^22.13.1",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^22.17.2",
+    "@types/qs": "^6.14.0",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
+    "tsx": "^4.20.4",
+    "typescript": "^5.9.2"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
