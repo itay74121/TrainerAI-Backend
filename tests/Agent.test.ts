@@ -43,7 +43,7 @@ describe("Testing Agent Eduardo", () => {
         };
         const token: string = createNewToken();
         const response = await request(app)
-            .post("/Agent/Eduardo")
+            .post("/api/v1/Agent/Eduardo")
             .auth(token, { type: "bearer" })
             .send(requestBody);
         expect(response.status).toBe(201); // adjust to your API

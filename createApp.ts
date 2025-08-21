@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { Authorization } from "./util/Authentication";
-import AgentRouter from "./routes/AgentRoute";
+import APIRouter from './routes/ApiRoute'
 import jwt from 'jsonwebtoken'
 import { config } from "dotenv";
 config();
@@ -16,7 +16,7 @@ export function createApp(): express.Express {
     // app.use(LogRequest)
     app.use(Authorization);
     // app.use(LogMessages)
-    app.use(AgentRouter);
+    app.use(APIRouter);
     // app.use("/OldConvo",OldConvoRouter);
     // https.createServer({
     //     key: fs.readFileSync("./server.key"),

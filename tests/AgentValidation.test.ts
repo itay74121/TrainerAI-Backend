@@ -18,7 +18,7 @@ describe("Agent endpoint validation tests", () => {
     };
 
     const res = await request(app)
-      .post("/Agent/Eduardo")
+      .post("/api/v1/Agent/Eduardo")
       .auth(validToken, { type: "bearer" })
       .send(invalidPayload);
 
@@ -37,7 +37,7 @@ describe("Agent endpoint validation tests", () => {
     };
 
     const res = await request(app)
-      .post("/Agent/Eduardo")
+      .post("/api/v1/Agent/Eduardo")
       .auth(validToken, { type: "bearer" })
       .send(invalidPayload);
 
@@ -58,7 +58,7 @@ describe("Agent endpoint validation tests", () => {
     };
 
     const res = await request(app)
-      .post("/Agent/Eduardo")
+      .post("/api/v1/Agent/Eduardo")
       // No auth header
       .send(validPayload);
 
