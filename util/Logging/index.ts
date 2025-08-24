@@ -60,9 +60,7 @@ export class Logger {
         if (this.filename) {
             try {
                 const raw = JSON.parse(readFileSync(this.filename, "utf8"));
-                console.log("before",raw)
                 const parsed = LogDataSchema.safeParse(raw);
-                console.log("after",parsed)
                 if (parsed.success) {
                     this.data = parsed.data;
                 } else {

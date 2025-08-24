@@ -1,0 +1,14 @@
+# Firebase Configuration Example
+# Copy this to .env and fill in your actual values
+
+# Option 1: Use service account key file (recommended for production)
+GOOGLE_APPLICATION_CREDENTIALS=./firebase-service-account-key.json
+
+# Option 2: Use Firebase config object (alternative approach)
+FIREBASE_PROJECT_ID=your-firebase-project-id
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYour private key here\n-----END PRIVATE KEY-----\n"
+FIREBASE_CLIENT_EMAIL=firebase-adminsdk-xxxxx@your-project.iam.gserviceaccount.com
+
+# Other environment variables
+NODE_ENV=development
+PORT=5001

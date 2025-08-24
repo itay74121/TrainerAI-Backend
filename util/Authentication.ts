@@ -7,6 +7,9 @@ export async function Authorization(
     next: NextFunction
 ) {
     try {
+        if (req.path ===  '/auth'){
+
+        }
         const secret: Secret = process.env.ACCESS_TOKEN_SECRET
             ? process.env.ACCESS_TOKEN_SECRET
             : "";
