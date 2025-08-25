@@ -58,7 +58,8 @@ export async function verifyFirebaseIdToken(
 export async function sendSignedFireBaseToken(req: Request, res: Response, next: NextFunction) {
   try {
     const token = await getJWT(JSON.stringify(req.user));
-    res.header("x-auth-token", token).status(200).json({});
+    res.header("x-auth-token", token)
+    res.status(200).json({});
   } catch (error) {
     console.error("Error generating signed token:", error);
     res.status(500).json({ error: "Internal server error" });

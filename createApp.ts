@@ -4,6 +4,7 @@ import { Authorization } from "./util/Authentication";
 import APIRouter from './routes/ApiRoute'
 import jwt from 'jsonwebtoken'
 import { config } from "dotenv";
+import { verifyFirebaseIdToken } from "./controller/Auth";
 config();
 // import https from "https";
 // import fs from "fs";
@@ -14,7 +15,7 @@ export function createApp(): express.Express {
     app.use(express.json());
     // app.use(CheckConnection)
     // app.use(LogRequest)
-    app.use(Authorization);
+    app.use(verifyFirebaseIdToken);
     // app.use(LogMessages)
     app.use(APIRouter);
     // app.use("/OldConvo",OldConvoRouter);

@@ -7,8 +7,9 @@ export async function Authorization(
     next: NextFunction
 ) {
     try {
-        if (req.path ===  '/auth'){
-
+        if (req.path.includes("/auth")) {
+            // skip so there could be authentication
+            return next();
         }
         const secret: Secret = process.env.ACCESS_TOKEN_SECRET
             ? process.env.ACCESS_TOKEN_SECRET
@@ -27,7 +28,7 @@ export async function Authorization(
         if (error.name == jwt.JsonWebTokenError.name) {
             // console.log(error.message);
         }
-        res.status(401).json({message: "Unauthorized"});
+        res.status(401).json({ message: "Unauthorized" });
     }
 }
 

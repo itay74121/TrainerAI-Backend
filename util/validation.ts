@@ -16,7 +16,7 @@ export const AgentRequestSchema = z.object({
   time: z.union([z.date(), z.string()]),
   uid: z.object({
     uid: z.string(),
-    name: z.string().optional(),
+    name: z.string().nullable().optional(),
     email: z.string().optional(),
   }),
 });
